@@ -14,8 +14,8 @@ contract Dao {
     constructor(){
         owner = msg.sender;
         nextProposal = 1;
-        daoContract = IdaoContract(0x88B48F654c30e99bc2e4A1559b4Dcf1aD93FA656);
-        validTokens = [13899442737259366268879373711294579734997432472560770870659951958291600375809];
+        daoContract = IdaoContract(0x2953399124F0cBB46d2CbACD8A89cF0599974963);
+        validTokens = [13899442737259366268879373711294579734997432472560770870659951959391112003585];
     }
 
     struct proposal{
