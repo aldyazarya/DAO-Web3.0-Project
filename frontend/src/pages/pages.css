@@ -68,10 +68,11 @@
     margin-top: 20px;
     margin-bottom: 40px;
     height:120px;
+    color: white;
   }
   
   .extraWidgetInfo{
-    color:rgba(6, 158, 252, 0.5);
+    color: #00A3FD;
     font-size: 12px;
     width: 50%;
     margin-top: 10px;
@@ -91,7 +92,7 @@
   
   .progressPercentage{
     height:8px;
-    background-color:rgba(6, 158, 252, 0.5);
+    background-color: #00A3FD;
     border-radius: 4px;
   }
   

@@ -48,7 +48,7 @@ const Proposal = () => {
           <Icon
             fill={e.attributes.votedFor ? "#2cc40a" : "#d93d3d"}
             size={24}
-            svg={e.attributes.votedFor ? "checkmark" : "arrowCircleDown"}
+            svg={e.attributes.votedFor ? "checkmark" : "xCircle"}
           />,
         ]);
 
