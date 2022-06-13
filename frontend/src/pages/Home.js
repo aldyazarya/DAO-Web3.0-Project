@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./pages.css";
 import { TabList, Tab, Widget, Tag, Table, Form } from "web3uikit";
 import { Link } from "react-router-dom";
-import { useMoralis, useMoralisWeb3Api } from "react-moralis";
+import {
+  useMoralis,
+  useMoralisWeb3Api,
+  useWeb3ExecuteFunction,
+} from "react-moralis";
 
 const Home = () => {
   const [passRate, setPassRate] = useState(0);
@@ -12,6 +16,43 @@ const Home = () => {
   const { Moralis, isInitialized } = useMoralis();
   const [proposals, setProposals] = useState();
   const Web3Api = useMoralisWeb3Api();
+  const [sub, setSub] = useState();
+  const contractProcessor = useWeb3ExecuteFunction();
+
+  async function createProposal(newProposal) {
+    let options = {
+      contractAddress: "0x2d4cD48Adc2f5E749d24809A9F30BaFAB6b78898",
+      functionName: "createProposal",
+      abi: [
+        {
+          inputs: [
+            { internalType: "string", name: "_description", type: "string" },
+            { internalType: "address[]", name: "_canVote", type: "address[]" },
+          ],
+          name: "createProposal",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      params: {
+        _description: newProposal,
+        _canVote: voters,
+      },
+    };
+
+    await contractProcessor.fetch({
+      params: options,
+      onSuccess: () => {
+        console.log("Proposal Successful");
+        setSub(false);
+      },
+      onError: (error) => {
+        alert(error.data.message);
+        setSub(false);
+      },
+    });
+  }
 
   async function getStatus(proposalId) {
     const ProposalCounts = Moralis.Object.extend("ProposalCounts");
@@ -139,7 +180,7 @@ const Home = () => {
                 {/* form */}
                 <Form
                   buttonConfig={{
-                    isLoading: false,
+                    isLoading: sub,
                     loadingtext: "Submitting Proposal",
                     text: "Submit",
                     theme: "secondary",
@@ -156,7 +197,8 @@ const Home = () => {
                     },
                   ]}
                   onSubmit={(e) => {
-                    alert("Proposal Submitted");
+                    setSub(true);
+                    createProposal(e.data[0].inputResult);
                   }}
                   title="Create a New Proposal"
                 />

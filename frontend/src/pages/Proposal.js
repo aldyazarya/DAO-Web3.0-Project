@@ -60,21 +60,13 @@ const Proposal = () => {
 
   async function castVote(upDown) {
     let options = {
-      contractAddress: "0xF304Ddf294d05c80995FB0702b40DfEA8E48582a",
+      contractAddress: "0x2d4cD48Adc2f5E749d24809A9F30BaFAB6b78898",
       functionName: "voteOnProposal",
       abi: [
         {
           inputs: [
-            {
-              internalType: "uint256",
-              name: "_id",
-              type: "uint256",
-            },
-            {
-              internalType: "bool",
-              name: "_vote",
-              type: "bool",
-            },
+            { internalType: "uint256", name: "_id", type: "uint256" },
+            { internalType: "bool", name: "_vote", type: "bool" },
           ],
           name: "voteOnProposal",
           outputs: [],
