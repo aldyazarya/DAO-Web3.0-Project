@@ -10,7 +10,7 @@ import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <MoralisProvider appId="xxx" serverUrl="xxx">
+    <MoralisProvider appId="JGGe2H4S4G0esVXGkUKZn8d6MQzJLeNb6PD5XZht" serverUrl="https://tkoq7kh5z068.usemoralis.com:2053/server">
       <BrowserRouter>
           <App />
       </BrowserRouter>
